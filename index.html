@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar glass">
+      <div class="greeting-wrap">
+        <p id="greetingText" class="muted">Good Day</p>
+        <h1 id="todayDate">Today</h1>
+      </div>
+      <button id="themeToggle" class="icon-btn pressable" aria-label="Toggle dark mode">
+        <span id="themeIcon">🌙</span>
+      </button>
+    </header>
+
+    <main id="viewContainer" class="view-container">
+      <section id="homeView" class="view active">
+        <div class="progress-card glass">
+          <div class="progress-head">
+            <p>Today Progress</p>
+            <span id="progressLabel">0%</span>
+          </div>
+          <div class="progress-track">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <p id="motivationText" class="motivation muted">One small step at a time.</p>
+        </div>
+
+        <section class="card glass">
+          <div class="card-head">
+            <h2>Today Tasks</h2>
+            <span id="taskCount" class="badge">0</span>
+          </div>
+          <div id="taskList" class="list"></div>
+          <p id="emptyTasks" class="empty-state">No tasks yet. Tap + to add one.</p>
+        </section>
+      </section>
+
+      <section id="habitsView" class="view">
+        <section class="card glass">
+          <div class="card-head">
+            <h2>Habits</h2>
+            <span class="badge">Daily</span>
+          </div>
+          <div id="habitList" class="list"></div>
+        </section>
+      </section>
+
+      <section id="profileView" class="view">
+        <section class="card glass">
+          <div class="card-head">
+            <h2>Profile</h2>
+          </div>
+          <div class="profile-grid">
+            <div class="stat-item">
+              <p class="muted">Tasks Done</p>
+              <h3 id="profileTasksDone">0</h3>
+            </div>
+            <div class="stat-item">
+              <p class="muted">Habits Streaks</p>
+              <h3 id="profileHabitStreak">0</h3>
+            </div>
+          </div>
+          <p class="muted profile-note">Consistency beats intensity. Keep your streak alive.</p>
+        </section>
+      </section>
+    </main>
+
+    <button id="addTaskFab" class="fab pressable" aria-label="Add task">+</button>
+
+    <nav class="bottom-nav glass" aria-label="Bottom navigation">
+      <button class="nav-item active pressable" data-view="homeView">Home</button>
+      <button class="nav-item pressable" data-view="habitsView">Habits</button>
+      <button class="nav-item pressable" data-view="profileView">Profile</button>
+    </nav>
+  </div>
+
+  <div id="taskModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop"></div>
+    <div class="modal-panel glass">
+      <div class="card-head">
+        <h2 id="modalTitle">Add Task</h2>
+        <button id="closeModal" class="icon-btn pressable" aria-label="Close modal">✕</button>
+      </div>
+      <form id="taskForm">
+        <label class="field">
+          <span>Task Title</span>
+          <input id="taskTitle" type="text" maxlength="80" required placeholder="What will you do?">
+        </label>
+        <label class="field">
+          <span>Time (Optional)</span>
+          <input id="taskTime" type="time">
+        </label>
+        <label class="field">
+          <span>Priority</span>
+          <select id="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+        <button class="primary-btn pressable" type="submit">Save Task</button>
+      </form>
+    </div>
+  </div>
+
+  <template id="taskItemTemplate">
+    <article class="task-item">
+      <button class="check-btn" aria-label="Mark task complete"></button>
+      <div class="task-main">
+        <h3 class="task-title"></h3>
+        <div class="task-meta">
+          <span class="task-time muted"></span>
+          <span class="task-priority"></span>
+        </div>
+      </div>
+      <div class="task-actions">
+        <button class="small-btn edit-btn pressable">Edit</button>
+        <button class="small-btn danger-btn delete-btn pressable">Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <template id="habitItemTemplate">
+    <article class="habit-item">
+      <div class="habit-main">
+        <h3 class="habit-title"></h3>
+        <p class="muted habit-streak"></p>
+      </div>
+      <button class="habit-toggle pressable" aria-label="Toggle habit">Done</button>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
