@@ -1,6 +1,7 @@
 # 📱 Daily Day
 
-**Daily Day** 
+**Daily Day** is a minimal, elegant daily task and habit tracker inspired by Apple’s iOS design. It helps you stay productive, organized, and consistent with a clean interface and smooth user experience.
+
 ---
 
 ## ✨ Features
